@@ -1,7 +1,9 @@
 # DataMining-Top-Revenue-Generating-Movies
 Top Revenue Generating Movies - Predicting Future Revenue Based on Attributes 
 
+
 Introduction and Background 
+
 
 	For this project, we explored the relationships between variables of top revenue generating movies and then chose a model to predict future movie revenues. Our dataset covers the top 5000 movies on The Movie Database (TMDB) and was found on Kaggle. Originally, this dataset rated movies based on IMDb, but for legal reasons, it is now rated based on TMDB ratings.
 	The dataset lists 20 columns, such as revenue, budget, genres, popularity, runtime, spoken  languages, original title, production country, vote average, and vote count, and 4803 rows, but during the data cleaning process we found 2 missing values so the final amount of rows used for the project is 4801. Our dependent variable (y) is revenue, and the independent variables (x variables) are budget, popularity, runtime, and vote average. 
@@ -11,7 +13,9 @@ The overarching research question is how do budget, popularity, vote average, an
   For prediction, we initially approached finding a model by using the K-fold approach, but ultimately performed it by using the validation set approach. Additionally, we used prediction and confidence intervals to show a range of where movie revenue could fall. Lastly, we also performed both a regression analysis and a classification analysis using the decision tree method.
 
 
+
 Data Summary Statistics
+
 
   The summary of our dependent variable and the independent variable is as follows:       
 <img width="571" alt="Screenshot 2024-02-06 at 9 12 15 AM" src="https://github.com/gabidasanches/DataMining-Top-Revenue-Generating-Movies/assets/123784158/ab2fba03-4b27-456f-85e2-fab183beb867">
@@ -21,9 +25,15 @@ Data Summary Statistics
 
   The higher the budget, the higher revenue a movie generates. For popularity levels,  most of the movies are between 0 and 200, but there exists a positive correlation where the higher the popularity level, the higher the revenue. For vote average, between 6 and 8 votes, the revenue starts to increase proportionally to the vote average.  For run time, there is not a clear association in the graph, which was later confirmed by the significance test performed during the multilinear regression part.
 
+
+
 Data Mining Method Description 
+
+
 Inference
+
 Simple Linear Regression
+
   As mentioned in the introduction, the purpose of the project is to understand how individual independent variables (budget, popularity, and vote average) relate to the dependent variable (revenue). By creating a linear regression model, we seek to establish and quantify these relationships and estimate future movie revenues based on the identified patterns in the data. The use of a regression model allowed for a systematic analysis of the impact of each independent variable on the dependent variable and helped make predictions for new movies based on their characteristics. 
   We used the lm() function to create a linear regression model in R. By using the simple linear regression model, the intercept and coefficients (beta) for each variable were generated, thus creating the equation to predict revenue. Below are the summary visualizations of each independent variable and their relationships with revenue. 
 
@@ -61,7 +71,10 @@ Analyzing the p-value for each variable,  ‘budget’, ‘popularity’ and ‘
 
   
 Prediction
+
+
 Prediction and Confidence Interval
+
   To further explore the regression model in the previous section, we ran multiple prediction interval and confidence interval tests based on the simple linear regression models presented above. We wanted to see where the predicted revenues for movies could fall given some value for the independent variable and the sample results are as follows:
 
 <img width="706" alt="Screenshot 2024-02-06 at 9 17 12 AM" src="https://github.com/gabidasanches/DataMining-Top-Revenue-Generating-Movies/assets/123784158/4cd7d78e-242e-46a4-bc08-14f2cced581e">
@@ -70,6 +83,7 @@ Prediction and Confidence Interval
 
   
 Training and Testing Dataset
+
   To assess the performance of our prediction model and create our testing and training dataset, the first approach we decided to use was the K-fold method because it trains the model using different data parts, providing a less biased model. To see how well the model performed, we ran the glm.fit function and then the cross-validation error. We utilized a model with 10 K-folds, and the values from the cross-validation error were extremely high (1.237291e^16, 1.216720e^16, 1.212364e^16, 1.234499e^16, 1.308496e^16,  4.889757e^16, 1.198987e^17,  3.092019e^16, 7.094536e^, and 17 5.391929e^19), which indicates that the model might not perform well on new data and could result in overfitting.
   Thus, we decided to use the validation set approach. We divided our data into two parts: the first half became the training dataset and the second half became the testing dataset. Based on the training dataset, we ran a multilinear regression equation and then calculated the mean squared error. We repeated this process to fit a quadratic and cubic regression and got the MSE for those models as well. The results are as follows: 
 
@@ -80,6 +94,7 @@ Training and Testing Dataset
 
 
 Predicting Future Revenue
+
   For predicting future revenues, we developed a predictive equation, using the predict function in R, to forecast the future revenue based on independent variables such as budget, popularity, and vote average. The model and coefficients are as follows: 
 Revenue = Intercept + (B1 x Budget) + (B2 x Popularity) + (B3 x Vote Average)
 
@@ -97,6 +112,7 @@ Regression Tree Method
 
 
   Classification Tree Method
+  
   We also utilized the Classification Tree Method to help identify which movies would be a success or not. The standard here was that if a movie generated any profit, so a revenue amount greater than the budget, the movie would be considered a success. Using this criteria, we added a new column to the existing dataframe called "Success" which contained two qualitative variables: "No" and "Yes". The logic in this column is if a movie had greater revenue than budget, it would fall under "Yes" and if the movie had less or equal revenue than budget, it would fall under "No".
   Next, a classification tree was implemented. Based on the results, there are 4 terminal nodes and have a misclassification error rate of 0.2214. We evaluated the model by splitting it into a testing and training set and predicting classification on the test dataset; from here, we then created a confusion table that resulted in 549 False and 1852 True and presented an accuracy rate of 0.77. The classification tree is as follows below: 
 
@@ -104,19 +120,23 @@ Regression Tree Method
 
 
   Conclusion
+  
 	For this project, our aim was to better understand how ‘budget’, ‘runtime’, ‘vote average’, and ‘popularity’ affected the revenue of a movie. For the first part, we focused on inference. ‘Runtime’ has been proven to be statistically insignificant and will likely have no effect on the revenue of a movie. On the other hand, ‘budget’ was the most statistically significant, followed by ‘vote average’ and ‘popularity’. 
 Our second part focused on the prediction. We created models using a simple linear regression and multilinear regression which allowed us to predict future revenue of movies based on our predictors. However, since we had a high RSE, we didn’t find the exact revenue that matched the one in our test and training set. Additionally, we used precision intervals, confidence intervals, and decision trees to further explore predicting movie revenue. But based on the results, we were still able to conclude that the higher the budget, the higher the revenue. Overall, after all the various testings and analyses, we now have a better insight of the relationships between each variable and movie revenue. 
 
 
 Research
+
 	To support our findings, we have researched a few articles that have reached similar conclusions. According to the newsletter Why Content is King by Nathan Baschez, higher budget equates to a higher box office return. In addition, movies that are more expensive to make have almost always broken even and are more likely to be successful. In the research paper, Analysis of Relations Between Budgets and Revenues from Movies, Devansh Hingad also reached the same conclusion. He further states the vice verse, where a decrease in budget causes a decrease in revenue. However, the idea that less budget means less revenue is not supported by Nathan Baschez. Baschez has stated that the positive correlation between budget and revenue only applies after a certain amount of budget. For movies with lower budget, it does not necessarily increase the chances of less revenue. Regardless, both have supported the idea that budget have a significant impact on revenue and that a higher budget will increase the amount of revenue for the movie. In addition, the research done by the Journal of Marketing also supports our findings for vote average - that high ratings can contribute to a higher revenue.
 
  
 Limitations to Research
+
 Overall, while we have delved into quite a few independent variables that could impact a movie's revenue, there could be other lurking variables that are hard to capture. Our data and analysis does not consider a movie’s showing times at a theater, month of release, popularity of the actors and film directors, limiting our research and predictions to the variables that are available in the TMDB dataset. 
 
 
 Practical Implications
+
 The analyses done in this project will allow real world stakeholders in the movie industry to decide what areas they should focus on to maximize their movies’ revenues. For example, a producer may look at a movie’s genre and runtime before deciding on shooting the movie, or perhaps an investor may look at the budget before investing, or perhaps the marketing department for a movie company will focus on raising popularity and vote averages. We believe the results obtained from this project will benefit many across the movie industry.
 
 
