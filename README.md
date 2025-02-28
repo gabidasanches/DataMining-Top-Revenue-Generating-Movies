@@ -20,6 +20,7 @@ Data Summary Statistics
 <img width="571" alt="Screenshot 2024-02-06 at 9 12 15 AM" src="https://github.com/gabidasanches/DataMining-Top-Revenue-Generating-Movies/assets/123784158/ab2fba03-4b27-456f-85e2-fab183beb867">
 
   From the scatterplots, we can see that all of the independent variables have a somewhat positive relationship with the dependent variable (revenue).
+  
 <img width="654" alt="Screenshot 2024-02-06 at 9 12 56 AM" src="https://github.com/gabidasanches/DataMining-Top-Revenue-Generating-Movies/assets/123784158/db5a4212-e31f-4b7f-a26e-e952b1fde366">
 
   The higher the budget, the higher revenue a movie generates. For popularity levels,  most of the movies are between 0 and 200, but there exists a positive correlation where the higher the popularity level, the higher the revenue. For vote average, between 6 and 8 votes, the revenue starts to increase proportionally to the vote average.  For run time, there is not a clear association in the graph, which was later confirmed by the significance test performed during the multilinear regression part.
